@@ -17,7 +17,7 @@ function OnePokemonCard({ pokemon }) {
       console.log('ok');
       dispatch(removePokemonFromPokedex(pokemon));
       console.log('Pokemon removed from Pokédex:', pokemon);
-      dispatch(removePokemonFromBookmarks(pokemon))
+      dispatch(removePokemonFromBookmarks(pokemon));
     } else {
       dispatch(addPokemonToPokedex(pokemon));
       console.log('Pokemon added to Pokédex:', pokemon);

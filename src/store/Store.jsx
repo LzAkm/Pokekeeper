@@ -10,4 +10,8 @@ const store = configureStore({
   },
 });
 
+window.addEventListener('beforeunload', () => {
+  localStorage.setItem('pokedex', JSON.stringify(store.getState().pokedex));
+});
+
 export default store;

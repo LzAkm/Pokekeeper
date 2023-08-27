@@ -1,6 +1,6 @@
 import '../styles/PokemonDetail.css';
 import Navbar from '../components/Navbar';
-import { fetchPokemonData, fetchPokemonEvolution } from '../services/api';
+import { fetchPokemonData, fetchPokemonEvolution, fetchPokemonEggGroup, fetchPokemonGender, fetchPokemonHabitat, fetchPokemonDescription } from '../services/api';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { color } from '../styles/TypesColor';
@@ -14,6 +14,10 @@ import StatGauge from '../components/StatGauge.jsx';
 function PokemonDetail() {
   const [pokemonData, setPokemonData] = useState(null);
   const [pokemonEvolution, setPokemonEvolution] = useState();
+  const [pokemonEggGroup,setPokemonEggGroup] = useState() ; 
+  const [pokemonGender,setPokemonGender] = useState() ; 
+  const [pokemonHabitat,setPokemonHabitat] = useState() ; 
+  const [pokemonDescription,setPokemonDescription] = useState() ; 
   const { pokemonId } = useParams();
 
   useEffect(() => {
@@ -21,8 +25,49 @@ function PokemonDetail() {
       try {
         const data = await fetchPokemonData({ pokemonId });
         setPokemonData(data);
+
       } catch (error) {
         console.error('Error fetching Pokemon data:', error);
+      }
+    }
+
+    async function fetchAndSetPokemonEggGroup() {
+      try {
+        const data = await fetchPokemonEggGroup({ pokemonId });
+        setPokemonEggGroup(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching Pokemon Egg Group data:', error);
+      }
+    }
+
+    async function fetchAndSetPokemonGender() {
+      try {
+        const data = await fetchPokemonGender({ pokemonId });
+        setPokemonGender(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching Pokemon Gender data:', error);
+      }
+    }
+
+    async function fetchAndSetPokemonHabitat() {
+      try {
+        const data = await fetchPokemonHabitat({ pokemonId });
+        setPokemonHabitat(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching Pokemon Habitat data:', error);
+      }
+    }
+
+    async function fetchAndSetPokemonDescription() {
+      try {
+        const data = await fetchPokemonDescription({ pokemonId });
+        setPokemonDescription(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching Pokemon Description data:', error);
       }
     }
 
@@ -37,7 +82,10 @@ function PokemonDetail() {
     }
 
     fetchAndSetPokemonEvolution();
-
+    fetchAndSetPokemonEggGroup();
+    fetchAndSetPokemonGender();
+    fetchAndSetPokemonHabitat();
+    fetchAndSetPokemonDescription();
     fetchAndSetPokemonData();
   }, [pokemonId]);
 
@@ -50,6 +98,8 @@ function PokemonDetail() {
   if (!pokemonEvolution) {
     return <div>Loading...</div>;
   }
+
+  console.log(pokemonData);
 
   // Gestionnaire de couler selon le/les type(s)
   const getTypeColor = (type) => {
@@ -158,9 +208,11 @@ function PokemonDetail() {
         </div>
       </div>
 
+      <p>{pokemonDescription.flavor_text_entries[0].flavor_text}</p>
+
       <div className='global-info'>
         <div className='weight'>
-          <h3>{pokemonData.weight} KG</h3>
+          <h3>{pokemonData.weight /10} KG</h3>
           <p>Wheight</p>
         </div>
         <div className='types-container'>
@@ -177,7 +229,7 @@ function PokemonDetail() {
         </div>
 
         <div className='height'>
-          <h3>{pokemonData.height} M</h3>
+          <h3>{pokemonData.height /10} M</h3>
           <p>Height</p>
         </div>
       </div>
@@ -192,7 +244,7 @@ function PokemonDetail() {
           </div>
           <div className='caracteristic'>
             <p className='bold'>Egg Groups</p>
-            <p>Monster, Dragon</p>
+            <p>{pokemonEggGroup.name}</p>
           </div>
           <div className='caracteristic'>
             <p className='bold'>Abilities</p>
@@ -201,12 +253,12 @@ function PokemonDetail() {
         </div>
         <div className='right-caracteristics'>
           <div className='caracteristic'>
-            <p className='bold'>Gender Ratio</p>
-            <p>87,5% 12,5%</p>
+            <p className='bold'>Gender</p>
+            <p>{pokemonGender.name}</p>
           </div>
           <div className='caracteristic'>
-            <p className='bold'>Hatch Steps</p>
-            <p>5100</p>
+            <p className='bold'>Habitat</p>
+            <p>{pokemonHabitat.name}</p>
           </div>
           <div className='caracteristic'>
             <p className='bold'>Evs</p>
@@ -219,9 +271,9 @@ function PokemonDetail() {
       <div className='evolutions-container'>
         <img className='evolution-image' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`} />
         <FontAwesomeIcon className='arrow' icon={faArrowRightLong} />
-        <img className='evolution-image' /* src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonEvolutionId}.svg`}  */ />
+        <p>{pokemonEvolution.chain.evolves_to[0].species.name}</p>
         <FontAwesomeIcon className='arrow' icon={faArrowRightLong} />
-        <img className='evolution-image' src={pokemonEvolution.chain.evolves_to[0].species.url} />
+        <p>{pokemonEvolution.chain.species.name}</p>
       </div>
     </div>
   );

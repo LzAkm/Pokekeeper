@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/SearchBar.module.css'; 
 
 function SearchBar({ onSearch }) {
@@ -17,7 +15,6 @@ function SearchBar({ onSearch }) {
         onChange={handleSearchChange}
         className={styles['search-input']} 
       />
-      <FontAwesomeIcon className={styles['search-icon']} icon={faMagnifyingGlass} />
     </div>
   );
 }

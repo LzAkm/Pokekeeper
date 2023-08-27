@@ -5,8 +5,8 @@ import imageSrc from '../assets/logo.png';
 import styles from '../styles/Navbar.module.css';
 
 function Navbar() {
-  const pokedex = useSelector((state) => state.pokedex.pokedex);
-  const numberOfPokemon = pokedex.length;
+  const bookmarkedPokemons = useSelector((state) => state.pokedex.bookmarkedPokemons);
+  const numberOfPokemon = bookmarkedPokemons.length; // Comptez les Pokémon en favoris
 
   return (
     <div className={styles.navigationContainer}>

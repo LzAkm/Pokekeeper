@@ -21,6 +21,46 @@ export async function fetchPokemonData({pokemonId}) {
     }
 }
 
+// Requete pour obtenir les détails d'un pokemon a partir de son ID
+export async function fetchPokemonEggGroup({pokemonId}) {
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/egg-group/${pokemonId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching Pokemon Egg Group data:', error);
+    }
+}
+
+// Requete pour obtenir les détails d'un pokemon a partir de son ID
+export async function fetchPokemonGender({pokemonId}) {
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/gender/${pokemonId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching Pokemon Gender data:', error);
+    }
+}
+
+// Requete pour obtenir les détails d'un pokemon a partir de son ID
+export async function fetchPokemonHabitat({pokemonId}) {
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-habitat/${pokemonId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching Pokemon Habitat data:', error);
+    }
+}
+
+// Requete pour obtenir les détails d'un pokemon a partir de son ID
+export async function fetchPokemonDescription({pokemonId}) {
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error fetching Pokemon Description data:', error);
+    }
+}
+
 // Requete pour obtenir les évolution d'un pokemon
 export async function fetchPokemonEvolution({pokemonId}) {
     try {
