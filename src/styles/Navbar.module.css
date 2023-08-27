@@ -1,0 +1,28 @@
+.navigationContainer {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 30px 10px 20px;
+    justify-content: space-between;
+    box-shadow: 0px 7px 8px -3px rgba(0, 0, 0, 0.067);
+}
+
+.pokedexBtn {
+    width: 110px;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    background-color: #1a73e8;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+.logo {
+    width: 220px;
+}

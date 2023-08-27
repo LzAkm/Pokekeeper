@@ -1,0 +1,78 @@
+.card{
+    width: 225px;
+    padding: 15px;
+    height: auto;
+    display: flex;
+    margin-right: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    background-color: white;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.114);
+}
+
+.card-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.fav-btn{
+    border: none;
+    color: #00000059;
+    font-size: 1.1rem;
+    background-color: transparent;
+}
+
+.fav-btn:hover{
+    cursor: pointer;
+}
+
+.card-body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pokemon-img{
+    width: 100%; 
+    height: 120px; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+h3.name{
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-footer{
+    padding: 5;
+    display: 'flex';
+    align-items: 'center';
+    flex-direction: 'row';
+    justify-content: 'space-between';
+}
+
+.more-btn{
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #1a73e8;
+}
+
+.more-btn:hover{
+    cursor: pointer;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}
