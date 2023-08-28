@@ -23,13 +23,15 @@ const pokedexSlice = createSlice({
         console.log(state.pokedex);
       }
       localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
-    },    
+    },
 
     removePokemonFromPokedex: (state, action) => {
-      const pokemonIdToRemove = action.payload.pokemonId;
-      state.pokedex = state.pokedex.filter(
-        (pokemon) => pokemon.pokemonId !== pokemonIdToRemove
-      );
+      removePokemonFromPokedex: (state, action) => {
+        const pokemonIdToRemove = action.payload.pokemonId;
+        state.pokedex = state.pokedex.filter(
+          (pokemon) => pokemon.pokemonId !== pokemonIdToRemove
+        );
+      }
       localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
     },
 
@@ -48,8 +50,8 @@ const pokedexSlice = createSlice({
 
     clearPokedex: (state, action) => {
       state.pokedex = [];
-      localStorage.removeItem('pokedex'); 
-    }    
+      localStorage.removeItem('pokedex');
+    }
   },
 });
 

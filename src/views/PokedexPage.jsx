@@ -6,8 +6,9 @@ import Navbar from '../components/Navbar.jsx';
 import OnePokemonCard from '../components/OnePokemonCard.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { addPokemonToPokedex } from '../store/reducers/PokedexSlice.jsx'; // Importez votre action addPokemonToPokedex
-import { setInitialized } from '../store/reducers/initSlice.jsx'; // Importez votre action setInitialized
+import { addPokemonToPokedex } from '../store/reducers/PokedexSlice.jsx'; 
+import { setInitialized } from '../store/reducers/initSlice.jsx'; 
+import EmptyPokedex from './EmptyPokedex';
 
 function Pokedex({ pokemon }) {
   const dispatch = useDispatch();
@@ -20,9 +21,9 @@ function Pokedex({ pokemon }) {
       const storedPokedex = localStorage.getItem('pokedex');
       if (storedPokedex) {
         const parsedPokedex = JSON.parse(storedPokedex);
-        dispatch(addPokemonToPokedex(parsedPokedex)); // Utilisez votre action addPokemonToPokedex
+        dispatch(addPokemonToPokedex(parsedPokedex)); 
       }
-      dispatch(setInitialized()); // Marquez l'initialisation comme terminée
+      dispatch(setInitialized());
     }
   }, [dispatch, initialized]);
 
@@ -48,13 +49,7 @@ function Pokedex({ pokemon }) {
           <OnePokemonCard key={index} pokemon={pokemon} />
         ))}
         {pokedex.length === 0 && bookmarkedPokemons.length === 0 && (
-          <div className='pokedex-empty-content'>
-            <p>Your Pokédex is empty.</p>
-            <p>Go back to search to get pokemon !</p>
-            <button className='back-to-search'>
-              <Link className='link' to='/'>Back to Search</Link>
-            </button>
-          </div>
+          <EmptyPokedex />
         )}
       </div>
     </div>

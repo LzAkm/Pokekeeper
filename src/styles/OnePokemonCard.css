@@ -1,4 +1,4 @@
-.card{
+.card {
     width: 225px;
     padding: 15px;
     height: auto;
@@ -12,45 +12,45 @@
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.114);
 }
 
-.card-header{
+.card-header {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
-.fav-btn{
+.fav-btn {
     border: none;
     color: #00000059;
     font-size: 1.1rem;
     background-color: transparent;
 }
 
-.fav-btn:hover{
+.fav-btn:hover {
     cursor: pointer;
 }
 
-.card-body{
+.card-body {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
 
-.pokemon-img{
-    width: 100%; 
-    height: 120px; 
+.pokemon-img {
+    width: 100%;
+    height: 120px;
     margin-top: 20px;
     margin-bottom: 10px;
     object-fit: contain;
 }
 
-h3.name{
+h3.name {
     font-weight: 400;
     text-transform: capitalize;
     font-family: 'Poppins', sans-serif;
 }
 
-.card-footer{
+.card-footer {
     padding: 5;
     display: 'flex';
     align-items: 'center';
@@ -58,7 +58,7 @@ h3.name{
     justify-content: 'space-between';
 }
 
-.more-btn{
+.more-btn {
     width: 100%;
     border: none;
     padding: 10px;
@@ -68,11 +68,19 @@ h3.name{
     background-color: #1a73e8;
 }
 
-.more-btn:hover{
+.more-btn:hover {
     cursor: pointer;
 }
 
-.link{
+.link {
     color: white;
     text-decoration: none;
+}
+
+.blue-border {
+    border: 3px solid blue;
+}
+
+.blue-bookmark {
+    color: #1a73e8;
 }

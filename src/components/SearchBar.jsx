@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../styles/SearchBar.module.css'; 
 
 function SearchBar({ onSearch }) {
   const handleSearchChange = (event) => {
     const newSearchTerm = event.target.value;
-    onSearch(newSearchTerm);
+    onSearch(newSearchTerm); 
   };
 
   return (

@@ -25,6 +25,13 @@
     flex-wrap: wrap;
     align-items: center;
     flex-direction: row;
+}
+
+.pagination{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
 }
 

@@ -35,7 +35,7 @@ p {
 }
 
 .stats-content {
-    width: 80%;
+    width: 100%;
     display: flex;
     padding: 10px;
     align-items: center;
@@ -91,7 +91,7 @@ p {
     width: 450px;
     display: flex;
     padding: 20px;
-    margin-left: 100px;
+    margin-left: 50px;
     flex-direction: column;
     justify-content: center;
 }
@@ -102,6 +102,13 @@ p {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.caracteristic-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -147,6 +154,10 @@ p {
     justify-content: space-between;
 }
 
+.caracteristic .bold{
+    margin-left: 10px;
+}
+
 .pokemon-name {
     margin-top: 20px;
 }
@@ -160,11 +171,24 @@ p {
     justify-content: space-between;
 }
 
+.evolutions-container h3{
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.evolutions-container .row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .evolution-image {
     width: 150px;
     height: auto;
 }
 
 .arrow {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }

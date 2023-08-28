@@ -1,0 +1,13 @@
+.not-found-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.not-found-container img{
+    margin-top: 100px;
+}

@@ -11,6 +11,8 @@ function OnePokemonCard({ pokemon }) {
   const dispatch = useDispatch();
   const bookmarkedPokemons = useSelector(state => state.pokedex.bookmarkedPokemons);
 
+  const isBookmarked = bookmarkedPokemons && bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId);
+
   const handleToggle = () => {
     console.log(bookmarkedPokemons);
     if (bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId)) {
@@ -26,9 +28,9 @@ function OnePokemonCard({ pokemon }) {
   }
 
   return (
-    <div className='card'>
+    <div className={`card ${isBookmarked ? 'blue-border' : ''}`}>
       <div className='card-header'>
-        <button className='fav-btn' onClick={() => {
+        <button className={`fav-btn ${isBookmarked ? 'blue-bookmark' : ''}`} onClick={() => {
           handleToggle(pokemon);
         }}>
           <FontAwesomeIcon icon={bookmarkedPokemons && bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId) ? faBookmarkFilled : faBookmarkEmpty} />

@@ -5,19 +5,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { color } from '../styles/TypesColor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightLong, faEgg, faHouse, faPercent, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import StatGauge from '../components/StatGauge.jsx';
-
-
-
+import typeEmojis from './TypeEmojis';
 
 function PokemonDetail() {
   const [pokemonData, setPokemonData] = useState(null);
   const [pokemonEvolution, setPokemonEvolution] = useState();
-  const [pokemonEggGroup,setPokemonEggGroup] = useState() ; 
-  const [pokemonGender,setPokemonGender] = useState() ; 
-  const [pokemonHabitat,setPokemonHabitat] = useState() ; 
-  const [pokemonDescription,setPokemonDescription] = useState() ; 
+  const [pokemonEggGroup, setPokemonEggGroup] = useState();
+  const [pokemonGender, setPokemonGender] = useState();
+  const [pokemonHabitat, setPokemonHabitat] = useState();
+  const [pokemonDescription, setPokemonDescription] = useState();
   const { pokemonId } = useParams();
 
   useEffect(() => {
@@ -105,7 +103,7 @@ function PokemonDetail() {
   const getTypeColor = (type) => {
     switch (type) {
       case 'normal':
-        return color.normal;
+        return 
       case 'fire':
         return color.fire;
       case 'water':
@@ -144,7 +142,6 @@ function PokemonDetail() {
         return color.grey;
     }
   };
-  
 
   return (
     <div className='detail-page'>
@@ -212,7 +209,7 @@ function PokemonDetail() {
 
       <div className='global-info'>
         <div className='weight'>
-          <h3>{pokemonData.weight /10} KG</h3>
+          <h3>{pokemonData.weight / 10} KG</h3>
           <p>Wheight</p>
         </div>
         <div className='types-container'>
@@ -229,7 +226,7 @@ function PokemonDetail() {
         </div>
 
         <div className='height'>
-          <h3>{pokemonData.height /10} M</h3>
+          <h3>{pokemonData.height / 10} M</h3>
           <p>Height</p>
         </div>
       </div>
@@ -238,43 +235,73 @@ function PokemonDetail() {
 
       <div className='caracteristics-container'>
         <div className='left-caracteristics'>
-          <div className='caracteristic'>
-            <p className='bold'>Catche</p>
-            <p>0%</p>
-          </div>
-          <div className='caracteristic'>
-            <p className='bold'>Egg Groups</p>
-            <p>{pokemonEggGroup.name}</p>
-          </div>
-          <div className='caracteristic'>
-            <p className='bold'>Abilities</p>
-            <p className='abilities'>{pokemonData.abilities[0].ability.name}, {pokemonData.abilities[1].ability.name}</p>
-          </div>
+          {pokemonData.types && (
+            <div className='caracteristic'>
+              <div className='caracteristic-name'>
+                <FontAwesomeIcon icon={faPercent} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <p className='bold'>Catch</p>
+              </div>
+              <p>0%</p>
+            </div>
+          )}
+          {pokemonEggGroup && (
+            <div className='caracteristic'>
+              <div className='caracteristic-name'>
+                <FontAwesomeIcon icon={faEgg} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <p className='bold'>Egg Groups</p>
+              </div>
+              <p>{pokemonEggGroup.name}</p>
+            </div>
+          )}
+          {pokemonData.abilities && (
+            <div className='caracteristic'>
+              <p className='bold'>Abilities</p>
+              <p className='abilities'>{pokemonData.abilities[0].ability.name}, {pokemonData.abilities[1].ability.name}</p>
+            </div>
+          )}
         </div>
+
         <div className='right-caracteristics'>
-          <div className='caracteristic'>
-            <p className='bold'>Gender</p>
-            <p>{pokemonGender.name}</p>
-          </div>
-          <div className='caracteristic'>
-            <p className='bold'>Habitat</p>
-            <p>{pokemonHabitat.name}</p>
-          </div>
-          <div className='caracteristic'>
-            <p className='bold'>Evs</p>
-            <p>3 Sp Att</p>
-          </div>
+          {pokemonGender && (
+            <div className='caracteristic'>
+              <div className='caracteristic-name'>
+                <FontAwesomeIcon icon={faVenusMars} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <p className='bold'>Gender</p>
+              </div>
+              <p>{pokemonGender.name}</p>
+            </div>
+          )}
+          {pokemonHabitat && (
+            <div className='caracteristic'>
+              <div className='caracteristic-name'>
+                <FontAwesomeIcon icon={faHouse} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <p className='bold'>Habitat</p>
+              </div>
+              <p>{pokemonHabitat.name}</p>
+            </div>
+          )}
         </div>
       </div>
 
       <h2 className='title'>Evolution</h2>
       <div className='evolutions-container'>
-        <img className='evolution-image' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`} />
-        <FontAwesomeIcon className='arrow' icon={faArrowRightLong} />
-        <p>{pokemonEvolution.chain.evolves_to[0].species.name}</p>
-        <FontAwesomeIcon className='arrow' icon={faArrowRightLong} />
-        <p>{pokemonEvolution.chain.species.name}</p>
+        {pokemonEvolution.chain && (
+          <div className='row'>
+            <h3>{pokemonEvolution.chain.species.name}</h3>
+            <FontAwesomeIcon className='arrow' icon={faArrowRightLong} />
+            {pokemonEvolution.chain.evolves_to[0] && (
+              <div className='row'>
+                <h3>{pokemonEvolution.chain.evolves_to[0].species.name}</h3>
+                <FontAwesomeIcon className='arrow' icon={faArrowRightLong} />
+                {pokemonEvolution.chain.evolves_to[0].evolves_to[0] && (
+                  <h3>{pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name}</h3>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
+
     </div>
   );
 }

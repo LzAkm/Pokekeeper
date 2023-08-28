@@ -1,0 +1,34 @@
+.empty-pokedex-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.empty-pokedex-content img{
+    margin-top: 50px;
+}
+
+.empty-pokedex-content p {
+    margin-top: 30px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.back-to-search {
+    border: none;
+    margin-top: 30px;
+}
+
+.empty-pokedex-content .link {
+    width: 120px;
+    border: none;
+    padding: 10px;
+    color: white;
+    margin-top: 50px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #1a73e8;
+}

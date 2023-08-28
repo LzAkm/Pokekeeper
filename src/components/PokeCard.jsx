@@ -31,6 +31,7 @@ function PokeCard({ searchPokemonName }) {
       console.error('Error fetching Pokemon list:', error);
     }
   }
+  
 
   // Execution de la requête et mise à jour des infos d'un pokémon
   useEffect(() => {

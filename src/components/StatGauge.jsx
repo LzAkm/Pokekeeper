@@ -8,6 +8,7 @@ function StatGauge({ value, maxValue, type }) {
   const gaugeStyle = {
     width: `${percentage}%`,
     backgroundColor: color[type] || color.grey,
+    borderRadius: '30px',
   };
 
   return (
