@@ -84,8 +84,6 @@ function PokemonDetail() {
     fetchAndSetPokemonData();
   }, [pokemonId]);
 
-
-
   if (!pokemonData) {
     return <div>Loading...</div>;
   }
@@ -94,7 +92,30 @@ function PokemonDetail() {
     return <div>Loading...</div>;
   }
 
-  console.log(pokemonData);
+  function cleanDescription(description) {
+    if (!description) {
+      return "";
+    }
+    // Remplace les caractères spéciaux indésirables par des espaces
+    return description.replace(/[\u000c]/g, " ");
+  }
+
+  function capitalizeFirstLetter(text) {
+    const sentences = text.split('. ');
+  
+    // Mettre la première lettre en majuscule et le reste en minuscules
+    const capitalizedSentences = sentences.map((sentence) => {
+      const trimmedSentence = sentence.trim();
+      if (trimmedSentence.length > 0) {
+        return trimmedSentence.charAt(0).toUpperCase() + trimmedSentence.slice(1).toLowerCase();
+      }
+      return '';
+    });
+    const newCapitalizedText = capitalizedSentences.join('. ');
+  
+    return newCapitalizedText;
+  }
+  
 
   // Gestionnaire de couler selon le/les type(s)
   const getTypeColor = (type) => {
@@ -202,7 +223,7 @@ function PokemonDetail() {
         </div>
       </div>
 
-      <p>{pokemonDescription.flavor_text_entries[0].flavor_text}</p>
+      <p>{pokemonData && capitalizeFirstLetter(cleanDescription(pokemonDescription.flavor_text_entries[0].flavor_text))}</p>
 
       <div className='global-info'>
         <div className='weight'>

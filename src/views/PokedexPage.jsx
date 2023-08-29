@@ -28,9 +28,12 @@ function Pokedex({ pokemon }) {
   }, [dispatch, initialized]);
 
   function clearPokedex() {
-    /* dispatch(clearPokedex());  */
+    console.log('Before clear:', bookmarkedPokemons);
+    dispatch(addPokemonToPokedex([]));
+    console.log('After clear:', bookmarkedPokemons);
     console.log('Pokedex cleared');
   }
+  
 
   return (
     <div className='pokedex-page'>

@@ -17,21 +17,16 @@ const pokedexSlice = createSlice({
     },
 
     addPokemonToPokedex: (state, action) => {
-      addPokemonToPokedex: (state, action) => {
-        state.pokedex.push(action.payload);
-        localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
-        console.log(state.pokedex);
-      }
+      state.pokedex.push(action.payload);
       localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
+      console.log(state.pokedex);
     },
 
     removePokemonFromPokedex: (state, action) => {
-      removePokemonFromPokedex: (state, action) => {
-        const pokemonIdToRemove = action.payload.pokemonId;
-        state.pokedex = state.pokedex.filter(
-          (pokemon) => pokemon.pokemonId !== pokemonIdToRemove
-        );
-      }
+      const pokemonIdToRemove = action.payload.pokemonId;
+      state.pokedex = state.pokedex.filter(
+        (pokemon) => pokemon.pokemonId !== pokemonIdToRemove
+      );
       localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
     },
 
