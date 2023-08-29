@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 // Requete pour obtenir la liste de pokemon
 export async function fetchPokemonList() {
     try {

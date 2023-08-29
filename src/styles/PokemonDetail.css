@@ -43,6 +43,10 @@ p {
     justify-content: center;
 }
 
+.description{
+    margin-top: 20px;
+}
+
 .global-info {
     width: 40%;
     display: flex;
@@ -120,7 +124,7 @@ p {
 }
 
 .caracteristics-container {
-    width: 80%;
+    width: 70%;
     display: flex;
     padding: 30px;
     align-items: center;
@@ -129,21 +133,27 @@ p {
 }
 
 .left-caracteristics {
-    width: 45%;
+    width: 40%;
     height: auto;
+    padding: 30px;
+    height: 200px;
     display: flex;
+    border-radius: 5px;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .right-caracteristics {
-    width: 45%;
+    width: 40%;
     height: auto;
     display: flex;
+    padding: 30px;
+    height: 200px;
+    border-radius: 5px;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .caracteristic {

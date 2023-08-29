@@ -17,22 +17,25 @@ const pokedexSlice = createSlice({
     },
 
     addPokemonToPokedex: (state, action) => {
-      state.pokedex.push(action.payload);
-      localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
-      console.log(state.pokedex);
+      addPokemonToPokedex: (state, action) => {
+        state.pokedex.push(action.payload);
+        localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
+      }
     },
 
     removePokemonFromPokedex: (state, action) => {
-      const pokemonIdToRemove = action.payload.pokemonId;
-      state.pokedex = state.pokedex.filter(
-        (pokemon) => pokemon.pokemonId !== pokemonIdToRemove
-      );
-      localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
+      removePokemonFromPokedex: (state, action) => {
+        const pokemonIdToRemove = action.payload.pokemonId;
+        state.pokedex = state.pokedex.filter(
+          (pokemon) => pokemon.pokemonId !== pokemonIdToRemove
+        );
+        localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
+      }
     },
 
     addPokemonToBookmarks: (state, action) => {
       state.bookmarkedPokemons.push(action.payload);
-      console.log(state.bookmarkedPokemons);
+      localStorage.setItem('pokedex', JSON.stringify(state.pokedex));
     },
 
     removePokemonFromBookmarks: (state, action) => {
@@ -45,6 +48,7 @@ const pokedexSlice = createSlice({
 
     clearPokedex: (state, action) => {
       state.pokedex = [];
+      state.bookmarkedPokemons = [];
       localStorage.removeItem('pokedex');
     }
   },

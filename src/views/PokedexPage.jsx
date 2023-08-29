@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import '../styles/Pokedex.css';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../components/Navbar.jsx';
 import OnePokemonCard from '../components/OnePokemonCard.jsx';
@@ -8,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addPokemonToPokedex } from '../store/reducers/PokedexSlice.jsx'; 
 import { setInitialized } from '../store/reducers/initSlice.jsx'; 
-import EmptyPokedex from './EmptyPokedex';
+import EmptyPokedex from './EmptyPokedex.jsx';
 
 function Pokedex({ pokemon }) {
   const dispatch = useDispatch();
@@ -22,10 +21,13 @@ function Pokedex({ pokemon }) {
       if (storedPokedex) {
         const parsedPokedex = JSON.parse(storedPokedex);
         dispatch(addPokemonToPokedex(parsedPokedex)); 
-      }
+      } 
       dispatch(setInitialized());
     }
   }, [dispatch, initialized]);
+  
+  console.log("pokedex length:", pokedex.length);
+  console.log("bookmarkedPokemons length:", bookmarkedPokemons.length);
 
   function clearPokedex() {
     console.log('Before clear:', bookmarkedPokemons);
@@ -33,8 +35,8 @@ function Pokedex({ pokemon }) {
     console.log('After clear:', bookmarkedPokemons);
     console.log('Pokedex cleared');
   }
-  
 
+  
   return (
     <div className='pokedex-page'>
       <Navbar />

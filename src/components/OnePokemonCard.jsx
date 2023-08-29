@@ -1,4 +1,4 @@
-import '../styles/OnePokemonCard.css'
+import '../styles/OnePokemonCard.module.css'
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark as faBookmarkEmpty } from '@fortawesome/free-regular-svg-icons';
@@ -8,11 +8,14 @@ import { addPokemonToPokedex, addPokemonToBookmarks, removePokemonFromBookmarks,
 import { useEffect, useState } from 'react';
 import { fetchPokemonData } from '../services/api';
 import { color } from '../styles/TypesColor.js'
+import styles from '../styles/OnePokemonCard.module.css';
 
 function OnePokemonCard({ pokemon }) {
   const dispatch = useDispatch();
   const [pokemonData, setPokemonData] = useState(null);
   const bookmarkedPokemons = useSelector(state => state.pokedex.bookmarkedPokemons);
+  const pokedex = useSelector((state) => state.pokedex.pokedex);
+
 
   const isBookmarked = bookmarkedPokemons && bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId);
 
@@ -21,12 +24,12 @@ function OnePokemonCard({ pokemon }) {
     if (bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId)) {
       console.log('ok');
       dispatch(removePokemonFromPokedex(pokemon));
-      console.log('Pokemon removed from Pokédex:', pokemon);
       dispatch(removePokemonFromBookmarks(pokemon));
+      console.log('Pokemon removed from Pokédex:', pokemon);
     } else {
       dispatch(addPokemonToPokedex(pokemon));
-      console.log('Pokemon added to Pokédex:', pokemon);
       dispatch(addPokemonToBookmarks(pokemon));
+      console.log('Pokemon added to Pokédex:', pokemon);
     }
   }
 
@@ -88,25 +91,25 @@ function OnePokemonCard({ pokemon }) {
   };
 
   return (
-    <div className={`card ${isBookmarked ? 'blue-border' : ''}`}>
-      <div className='card-header'>
-        <button className={`fav-btn ${isBookmarked ? 'blue-bookmark' : ''}`} onClick={() => {
-          handleToggle(pokemon);
-        }}>
-          <FontAwesomeIcon icon={bookmarkedPokemons && bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId) ? faBookmarkFilled : faBookmarkEmpty} />
+    <div className={`${styles.card} ${isBookmarked ? styles.blueBorder : ''}`}>
+      <div className={styles.cardHeader}>
+        <button className={`${styles.favBtn} ${isBookmarked ? styles.blueBookmark : ''}`} onClick={handleToggle}>
+          <FontAwesomeIcon
+            icon={bookmarkedPokemons && bookmarkedPokemons.find(item => item.pokemonId === pokemon.pokemonId) ? faBookmarkFilled : faBookmarkEmpty}
+          />
         </button>
       </div>
-      <div className='card-body'>
-        <img className='pokemon-img' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.pokemonId}.svg`} />
-        <h3 className='name'>{pokemon.name}</h3>
+      <div className={styles.cardBody}>
+        <img className={styles.pokemonImg} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.pokemonId}.svg`} alt={pokemon.name} />
+        <h3 className={styles.name}>{pokemon.name}</h3>
       </div>
-      <div className='card-footer'>
+      <div className={styles.cardFooter}>
         {pokemonData && pokemonData.types && (
-          <div className='types-rectangles'>
+          <div className={styles.typesRectangles}>
             {pokemonData.types.map((typeData, index) => (
               <div
                 key={index}
-                className='rectangle'
+                className={styles.rectangle}
                 style={{ backgroundColor: getTypeColor(typeData.type.name) }}
               >
                 <p>{typeData.type.name}</p>
@@ -115,8 +118,8 @@ function OnePokemonCard({ pokemon }) {
           </div>
         )}
 
-        <Link className='link' to={`/pokemon/${pokemon.pokemonId}`}>
-          <button className='more-btn'>More details</button>
+        <Link className={styles.link} to={`/pokemon/${pokemon.pokemonId}`}>
+          <button className={styles.moreBtn}>More details</button>
         </Link>
       </div>
     </div>

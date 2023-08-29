@@ -102,7 +102,7 @@ function PokemonDetail() {
 
   function capitalizeFirstLetter(text) {
     const sentences = text.split('. ');
-  
+
     // Mettre la première lettre en majuscule et le reste en minuscules
     const capitalizedSentences = sentences.map((sentence) => {
       const trimmedSentence = sentence.trim();
@@ -112,16 +112,16 @@ function PokemonDetail() {
       return '';
     });
     const newCapitalizedText = capitalizedSentences.join('. ');
-  
+
     return newCapitalizedText;
   }
-  
+
 
   // Gestionnaire de couler selon le/les type(s)
   const getTypeColor = (type) => {
     switch (type) {
       case 'normal':
-        return 
+        return
       case 'fire':
         return color.fire;
       case 'water':
@@ -220,10 +220,10 @@ function PokemonDetail() {
               type={pokemonData.types[0].type.name}
             />
           </div>
+        <p className='description'>{pokemonData && capitalizeFirstLetter(cleanDescription(pokemonDescription.flavor_text_entries[0].flavor_text))}</p>
         </div>
       </div>
 
-      <p>{pokemonData && capitalizeFirstLetter(cleanDescription(pokemonDescription.flavor_text_entries[0].flavor_text))}</p>
 
       <div className='global-info'>
         <div className='weight'>
@@ -252,11 +252,11 @@ function PokemonDetail() {
       <h2 className='title'>Profile</h2>
 
       <div className='caracteristics-container'>
-        <div className='left-caracteristics'>
+        <div className='left-caracteristics' style={{ backgroundColor: getTypeColor(pokemonData.types[0].type.name) }}>
           {pokemonData.types && (
             <div className='caracteristic'>
               <div className='caracteristic-name'>
-                <FontAwesomeIcon icon={faPercent} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <FontAwesomeIcon icon={faPercent} />
                 <p className='bold'>Catch</p>
               </div>
               <p>0%</p>
@@ -265,7 +265,7 @@ function PokemonDetail() {
           {pokemonEggGroup && (
             <div className='caracteristic'>
               <div className='caracteristic-name'>
-                <FontAwesomeIcon icon={faEgg} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <FontAwesomeIcon icon={faEgg} />
                 <p className='bold'>Egg Groups</p>
               </div>
               <p>{pokemonEggGroup.name}</p>
@@ -279,11 +279,11 @@ function PokemonDetail() {
           )}
         </div>
 
-        <div className='right-caracteristics'>
+        <div className='right-caracteristics' style={{ backgroundColor: getTypeColor(pokemonData.types[0].type.name) }}>
           {pokemonGender && (
             <div className='caracteristic'>
               <div className='caracteristic-name'>
-                <FontAwesomeIcon icon={faVenusMars} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <FontAwesomeIcon icon={faVenusMars} />
                 <p className='bold'>Gender</p>
               </div>
               <p>{pokemonGender.name}</p>
@@ -292,7 +292,7 @@ function PokemonDetail() {
           {pokemonHabitat && (
             <div className='caracteristic'>
               <div className='caracteristic-name'>
-                <FontAwesomeIcon icon={faHouse} style={{ color: getTypeColor(pokemonData.types[0].type.name) }} />
+                <FontAwesomeIcon icon={faHouse} />
                 <p className='bold'>Habitat</p>
               </div>
               <p>{pokemonHabitat.name}</p>

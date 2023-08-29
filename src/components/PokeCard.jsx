@@ -1,8 +1,9 @@
-import '../styles/PokeCard.css';
+import '../styles/PokeCard.module.css';
 import React, { useState, useEffect } from 'react';
 import { fetchPokemonByName, fetchPokemonList } from '../services/api';
 import { useDispatch } from 'react-redux';
 import OnePokemonCard from './OnePokemonCard';
+import styles from '../styles/PokeCard.module.css';
 
 
 function PokeCard({ searchPokemonName }) {
@@ -31,7 +32,6 @@ function PokeCard({ searchPokemonName }) {
       console.error('Error fetching Pokemon list:', error);
     }
   }
-  
 
   // Execution de la requête et mise à jour des infos d'un pokémon
   useEffect(() => {
@@ -43,14 +43,11 @@ function PokeCard({ searchPokemonName }) {
 
   }, [searchPokemonName]);
 
-
-  
-
   return (
-    <div className='pokemon-list'>
+    <div className={styles.pokemonList}>
       {pokemonList.map((pokemon, index) => (
         <div key={index}>
-          <OnePokemonCard pokemon={pokemon}/>
+          <OnePokemonCard pokemon={pokemon} />
         </div>
       ))}
     </div>
