@@ -7,7 +7,6 @@ import { color } from '../styles/TypesColor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong, faEgg, faHouse, faPercent, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import StatGauge from '../components/StatGauge.jsx';
-import typeEmojis from './TypeEmojis';
 
 function PokemonDetail() {
   const [pokemonData, setPokemonData] = useState(null);
@@ -23,7 +22,6 @@ function PokemonDetail() {
       try {
         const data = await fetchPokemonData({ pokemonId });
         setPokemonData(data);
-
       } catch (error) {
         console.error('Error fetching Pokemon data:', error);
       }
@@ -72,7 +70,6 @@ function PokemonDetail() {
     async function fetchAndSetPokemonEvolution() {
       try {
         const data = await fetchPokemonEvolution({ pokemonId });
-        console.log(data);
         setPokemonEvolution(data);
       } catch (error) {
         console.error('Error fetching Pokemon data:', error);
